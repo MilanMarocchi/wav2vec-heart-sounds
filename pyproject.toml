@@ -1,0 +1,41 @@
+[project]
+name = "mpcg-wav2vec"
+version = "0.1.0"
+description = "Clean implementation of the mPCG Wav2Vec heart-sound classification and synthetic augmentation pipeline."
+authors = [{ name = "Milan Marocchi", email = "milan.marocchi@postgrad.curtin.edu.au" }]
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "torch>=2.6",
+    "torchaudio>=2.6",
+    "transformers>=4.49",
+    "peft>=0.14",
+    "scipy>=1.15",
+    "numpy>=2.1",
+    "librosa>=0.10",
+    "pyrubberband>=0.4",
+    "pywavelets>=1.8",
+    "scikit-learn>=1.6",
+    "wfdb>=4.2",
+    "click>=8.1",
+    "tqdm>=4.67",
+    "tensorboard>=2.16",
+    "matplotlib>=3.8",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=8.0"]
+
+[project.scripts]
+mpcg-wav2vec = "mpcg_wav2vec.cli:cli"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/mpcg_wav2vec"]
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+testpaths = ["tests"]

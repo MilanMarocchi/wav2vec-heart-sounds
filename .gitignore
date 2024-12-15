@@ -1,0 +1,25 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+build/
+dist/
+
+# Torch / experiment artefacts
+*.pt
+*.ckpt
+runs/
+modelout/
+logs/
+generated_data/
+lightning_logs/
+splits/
+results/
+tables/
+generated/
+
+# OS / editor
+.DS_Store
+.idea/
+.vscode/

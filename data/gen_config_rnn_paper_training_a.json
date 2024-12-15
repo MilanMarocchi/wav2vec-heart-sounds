@@ -1,0 +1,65 @@
+{
+  "test_set": {
+    "data": "data/physionet.org/files/challenge-2016/1.0.0/training-a",
+    "split": "data/heart-sounds/actually-is-reference-CTH/REFERENCE.csv",
+    "segment": "data/segmentation/wav2vec-training-a-4"
+  },
+  "valid_set": {
+    "data": "data/physionet.org/files/challenge-2016/1.0.0/training-a",
+    "split": "data/heart-sounds/actually-is-reference-CTH/REFERENCE.csv",
+    "segment": "data/segmentation/wav2vec-training-a-4",
+    "augment_num": 30
+  },
+  "datasets": {
+    "data1": {
+      "path": "data/physionet.org/files/challenge-2016/1.0.0/training-a",
+      "split": "data/heart-sounds/actually-is-reference-CTH/REFERENCE.csv",
+      "segment": "data/segmentation/wav2vec-training-a-4",
+      "gen_data": false,
+      "augment_num": 30
+    },
+    "data2": {
+      "path": "data/heart-sounds/wavegrad-n1600-a400-weights.pt-flat",
+      "split": "data/heart-sounds/wavegrad-n1600-a400-weights.pt-flat/REFERENCE.csv",
+      "segment": "data/segmentation/rnn/heart-sounds/wavegrad-4",
+      "gen_data": true,
+      "augment_num": 3,
+      "proportion": 0.3
+    },
+    "data3": {
+      "path": "data/heart-sounds/diffwave-n1600-a400-weights.pt-flat",
+      "split": "data/heart-sounds/diffwave-n1600-a400-weights.pt-flat/REFERENCE.csv",
+      "segment": "data/segmentation/rnn/heart-sounds/diffwave-4",
+      "gen_data": true,
+      "augment_num": 3,
+      "proportion": 0.3
+    }
+  },
+  "schedule": [
+    {
+      "key": "data1",
+      "epochs": 10,
+      "letskip": false
+    },
+    {
+      "key": "data2",
+      "epochs": 4,
+      "letskip": true
+    },
+    {
+      "key": "data1",
+      "epochs": 2,
+      "letskip": true
+    },
+    {
+      "key": "data3",
+      "epochs": 4,
+      "letskip": true
+    },
+    {
+      "key": "data1",
+      "epochs": 2,
+      "letskip": true
+    }
+  ]
+}

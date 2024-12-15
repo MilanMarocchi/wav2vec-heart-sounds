@@ -1,0 +1,40 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite the papers below."
+title: >-
+  Scaling to Multimodal and Multichannel Heart Sound Classification with Synthetic and
+  Augmented Biosignals
+authors:
+  - family-names: Marocchi
+    given-names: Milan
+  - family-names: Fynn
+    given-names: Matthew
+  - family-names: Mandana
+    given-names: Kayapanda
+  - family-names: Rong
+    given-names: Yue
+year: 2025
+identifiers:
+  - type: other
+    value: "arXiv:2509.11606"
+url: "https://arxiv.org/abs/2509.11606"
+references:
+  - type: article
+    title: >-
+      Generative Deep Learning and Signal Processing for Data Augmentation of Cardiac
+      Auscultation Signals: Improving Model Robustness Using Synthetic Audio
+    authors:
+      - family-names: Abbott
+        given-names: Leigh
+      - family-names: Marocchi
+        given-names: Milan
+      - family-names: Fynn
+        given-names: Matthew
+      - family-names: Rong
+        given-names: Yue
+      - family-names: Nordholm
+        given-names: Sven
+    year: 2025
+    identifiers:
+      - type: other
+        value: "arXiv:2410.10125"
+    url: "https://arxiv.org/abs/2410.10125"
