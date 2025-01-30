@@ -1,0 +1,17 @@
+.vscode/**
+**/.vscode
+**/__pycache__
+__pycache__/**
+data/**
+.DS_Store
+models/**
+Pipfile.lock
+datasets.pyc
+results.json
+runs/**
+**/runs
+**/home
+**/*tmp*/**
+**/venv/**
+**/*.log
+models/*
