@@ -90,3 +90,4 @@ urllib3==2.1.0
 Werkzeug==3.0.1
 wfdb==4.1.2
 xkcdpass==1.19.8
+pyrubberband==0.3.0

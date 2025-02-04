@@ -14,6 +14,7 @@ from scipy.io import loadmat
 import random
 import librosa
 import pywt
+import pyrubberband as pyrb
 
 import logging
 logging.basicConfig(level=logging.INFO)
@@ -43,8 +44,8 @@ def stop_matlab():
 
 
 def stretch_resample(signal: np.ndarray, sample_rate: int, time_stretch_factor: float) -> np.ndarray:
-    signal = librosa.effects.time_stretch(signal, rate=time_stretch_factor)
-    signal = librosa.resample(signal, orig_sr=round(sample_rate * time_stretch_factor), target_sr=sample_rate)
+    sig_len = len(signal)
+    signal = pyrb.time_stretch(signal, fs, time_stretch_factor)
     return signal
 
 
@@ -53,6 +54,12 @@ def random_crop(signal: np.ndarray, len_crop: int) -> np.ndarray:
     end = start + len_crop
     return signal[start:end]
 
+def time_stretch_crop(signal: np.ndarray, fs: int, time_stretch_factor: float) -> np.ndarray:
+    """Time stretches the signal and crops it to it's original length"""
+    sig_len = len(signal)
+    signal = pyrb.time_stretch(signal, fs, time_stretch_factor)
+    
+    return signal[:sig_len]
 
 def random_parametric_eq(signal: np.ndarray, sr: float, low: float, high: float, num_bands: int = 5) -> np.ndarray:
     equalised_signal = np.copy(signal)
@@ -111,6 +118,13 @@ def notchfilter(signal: np.ndarray, fs: float, notch: float, Q: float) -> np.nda
     signal = ssg.filtfilt(b, a, signal)
 
     return signal
+
+
+def band_stop(signal: np.ndarray, fs: int, fs_low: int, fs_high: int, order:int = 4):
+   b, a = ssg.butter(order, [fs_low / fs, fs_high / fs], btype='bandstop') 
+   signal = ssg.filtfilt(b, a, signal)
+
+   return signal
 
 
 def pre_filter_ecg(signal: np.ndarray, fs: float) -> np.ndarray:

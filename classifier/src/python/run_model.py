@@ -9,6 +9,7 @@ from util.schedule import (
     get_schedule
 )
 from classifier.transforms import (
+    create_audio_data_transforms,
     create_data_transforms
 )
 from classifier.dataloaders import (
@@ -601,6 +602,7 @@ def train_rnn_gen_model(
     device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
 
     Dataset, augmentation = get_dataset(database, False, is_rnn=is_rnn)
+    transforms = create_audio_data_transforms(fs)
 
     valid_set = schedule_dict["valid_set"]
     datasets["valid"] = Dataset(
@@ -611,6 +613,7 @@ def train_rnn_gen_model(
         audio_dir,
         ecg=(database == "training-a"),
         segmentation=segmentation,
+        transform=transforms["valid"],
         four_band=four_bands,
         sig_len=sig_len,
         augmentation=augmentation,
@@ -627,6 +630,7 @@ def train_rnn_gen_model(
         audio_dir,
         ecg=(database == "training-a"),
         segmentation=segmentation,
+        transform=transforms["test"],
         four_band=four_bands,
         sig_len=sig_len,
         augmentation=augmentation,
@@ -650,6 +654,7 @@ def train_rnn_gen_model(
             audio_dir,
             ecg=(database == "training-a"),
             segmentation=segmentation,
+            transform=transforms["train"],
             four_band=four_bands,
             sig_len=sig_len,
             fs=fs,

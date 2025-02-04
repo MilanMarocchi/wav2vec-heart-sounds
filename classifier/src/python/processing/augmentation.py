@@ -244,7 +244,7 @@ def augment_multi_pcg(orig_multi_pcg_wav: list, sr,
             pcg_multi_wav[idx] = standardise_signal(pcg_wav)
 
     if np.random.rand() < prob_time_warp:
-        time_stretch_factor = randfloat(1.004, 1.006)
+        time_stretch_factor = randfloat(0.94, 1.06)
 
         for idx, pcg_wav in enumerate(pcg_multi_wav):
             pcg_wav = stretch_resample(pcg_wav, sr, time_stretch_factor)
